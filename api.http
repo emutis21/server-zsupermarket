@@ -1,7 +1,7 @@
 GET http://localhost:8080/products
 
 ### obteenmos los productos de la pagina 2
-GET http://localhost:8080/products?page=0
+GET http://localhost:8080/products?page=1
 
 ### Get product by id
 GET http://localhost:8080/products/5

@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,14 @@ public class ProductController {
 
   @GetMapping
   public Page<ProductListingData> ProductList(
-    @PageableDefault(size = 6) Pageable paginacion
+    @RequestParam(defaultValue = "1") int page,
+    @PageableDefault(size = 6) Pageable pagination
   ) {
+    int adjustedPage = page - 1;
+    Pageable ajustedPagination = PageRequest.of(adjustedPage, pagination.getPageSize(), pagination.getSort());
+    
     return productRepository
-      .findByActiveTrue(paginacion)
+      .findByActiveTrue(ajustedPagination)
       .map(ProductListingData::new);
   }
 

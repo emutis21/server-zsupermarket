@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotNull;
 
 public record ProductUpdateData(
   @NotNull Long id,
-  String product_name,
-  Integer stock_quantity,
-  String bar_code,
-  String product_description,
-  String image_url,
+  String productName,
+  Integer stockQuantity,
+  String barCode,
+  String productDescription,
+  String imageUrl,
   Double price
 ) {}

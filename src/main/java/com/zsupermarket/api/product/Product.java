@@ -24,12 +24,12 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String product_name;
-  private String product_description;
+  private String productName;
+  private String productDescription;
   private Double price;
-  private Integer stock_quantity;
-  private String bar_code;
-  private String image_url;
+  private Integer stockQuantity;
+  private String barCode;
+  private String imageUrl;
 
   private Boolean active;
 
@@ -38,21 +38,21 @@ public class Product {
 
   public Product(ProductRegistrationData ProductRegistrationData) {
     this.active = true;
-    this.product_name = ProductRegistrationData.product_name();
-    this.product_description = ProductRegistrationData.product_description();
-    this.stock_quantity = ProductRegistrationData.stock_quantity();
-    this.bar_code = ProductRegistrationData.bar_code();
+    this.productName = ProductRegistrationData.productName();
+    this.productDescription = ProductRegistrationData.productDescription();
+    this.stockQuantity = ProductRegistrationData.stockQuantity();
+    this.barCode = ProductRegistrationData.barCode();
     this.price = ProductRegistrationData.price();
     this.category = ProductRegistrationData.category();
-    this.image_url = ProductRegistrationData.image_url();
+    this.imageUrl = ProductRegistrationData.imageUrl();
   }
 
   public void updateData(ProductUpdateData productUpdateData) {
-    if (productUpdateData.product_name() != null) {
-      this.product_name = productUpdateData.product_name();
+    if (productUpdateData.productName() != null) {
+      this.productName = productUpdateData.productName();
     }
-    if (productUpdateData.stock_quantity() != null) {
-      this.stock_quantity = productUpdateData.stock_quantity();
+    if (productUpdateData.stockQuantity() != null) {
+      this.stockQuantity = productUpdateData.stockQuantity();
     }
   }
 

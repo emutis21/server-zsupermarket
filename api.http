@@ -1,7 +1,11 @@
+### 
 GET http://localhost:8080/products
 
 ### obteenmos los productos de la pagina 2
-GET http://localhost:8080/products?page=1
+GET http://localhost:8080/products?page=2
+
+### buscamos por nombre
+http://localhost:8080/products?search=pollo&page=1
 
 ### Get product by id
 GET http://localhost:8080/products/5
@@ -11,14 +15,14 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-  "id": 122,
-  "product_name": "Helado de Vainilla",
-  "product_description": "Helado de vainilla cremoso",
-  "stock_quantity": 12,
+  "id": 133,
+  "productName": "Perros Salchicha",
+  "productDescription": "Perros salchicha congelados",
+  "stockQuantity": 25,
   "category": "CONGELADOS",
-  "bar_code": "6c0a271d-c3b4-4a5a-8c90-57f858ec8256",
-  "image_url": "https://source.unsplash.com/480x300/?icecream&random=10",
-  "price": 4.50,
+  "barCode": "6c0a271d-c3b4-4a5a-8c90-57f858ec8267",
+  "imageUrl": "https://source.unsplash.com/480x300/?hotdogs",
+  "price": 5.00,
   "active": 1
 }
 
@@ -31,6 +35,6 @@ Content-Type: application/json
 
 {
 	"id": 5,
-  "product_name": "Leche descremada",
-  "image_url": "https://source.unsplash.com/480x300/?milk&random=1"
+  "productName": "Leche descremada",
+  "imageUrl": "https://source.unsplash.com/480x300/?milk&random=1"
 }

@@ -5,10 +5,10 @@ GET http://localhost:8080/products
 GET http://localhost:8080/products?page=2
 
 ### buscamos por nombre
-http://localhost:8080/products?search=pollo&page=1
+http://localhost:8080/products?query=lejía&page=1
 
 ### Get product by id
-GET http://localhost:8080/products/5
+GET http://localhost:8080/products/1
 
 ### Create product
 POST http://localhost:8080/products

@@ -1,5 +1,10 @@
 package com.zsupermarket.api.controller;
 
+import com.zsupermarket.api.product.Product;
+import com.zsupermarket.api.product.ProductListingData;
+import com.zsupermarket.api.product.ProductRegistrationData;
+import com.zsupermarket.api.product.ProductRepository;
+import com.zsupermarket.api.product.ProductUpdateData;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.zsupermarket.api.product.Product;
-import com.zsupermarket.api.product.ProductListingData;
-import com.zsupermarket.api.product.ProductRegistrationData;
-import com.zsupermarket.api.product.ProductRepository;
-import com.zsupermarket.api.product.ProductUpdateData;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -33,14 +33,25 @@ public class ProductController {
   @GetMapping
   public Page<ProductListingData> ProductList(
     @RequestParam(defaultValue = "1") int page,
+    @RequestParam(required = false) String query,
     @PageableDefault(size = 6) Pageable pagination
   ) {
     int adjustedPage = page - 1;
-    Pageable ajustedPagination = PageRequest.of(adjustedPage, pagination.getPageSize(), pagination.getSort());
-    
-    return productRepository
-      .findByActiveTrue(ajustedPagination)
-      .map(ProductListingData::new);
+    Pageable ajustedPagination = PageRequest.of(
+      adjustedPage,
+      pagination.getPageSize(),
+      pagination.getSort()
+    );
+
+    if (query != null && !query.isEmpty()) {
+      return productRepository
+        .findByProductNameContainingAndActiveTrue(query, ajustedPagination)
+        .map(ProductListingData::new);
+    } else {
+      return productRepository
+        .findByActiveTrue(ajustedPagination)
+        .map(ProductListingData::new);
+    }
   }
 
   @GetMapping("/{id}")
